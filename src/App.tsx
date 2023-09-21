@@ -5,6 +5,8 @@ import logo from './images/SpaceX-logo.png';
 function App() {
 
   let list= [1,2,3,4,5,6,7,8]
+  let data = new Date("2006-03-25T10:30:00+12:00");
+  console.log("Date:",data.getMonth())
   return (
     <div className="App">
 
@@ -25,7 +27,14 @@ function App() {
               <p>Falcon 9</p>
             </div>
             <div className='info-box'> 
-              
+
+              <div className='rocket-model'>
+                  <div className='rocket-modeltype'>Rocket: </div>
+                  <div className= "rocket-modelinfo">Falcon</div>
+              </div>
+
+              <div></div>
+
             </div>
           </div>
         

@@ -65,3 +65,26 @@
   width: 100%;
   background-color: blueviolet;
 }
+.rocket-model{
+  height: 26%;
+  width: 100%;
+  background-color: orange;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-around;
+}
+.rocket-modeltype{
+  display: inline-block;
+  width:40%;
+  height: 100%;
+  background-color: cyan;
+
+}
+.rocket-modelinfo{
+  width:60%;
+  height: 100%;
+  display: flex;
+  align-items: end;
+  justify-content: flex-start;
+  background-color: brown;
+}
