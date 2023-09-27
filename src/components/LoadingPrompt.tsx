@@ -5,6 +5,7 @@ export const Loading = () => {
     useEffect(()=>{
         
     let index: number;
+    let c: number = 1;
     let b = document.getElementsByClassName("obj");
    
     let interval: NodeJS.Timer = setInterval(()=>{
@@ -15,6 +16,7 @@ export const Loading = () => {
              index = ind
              elem.classList.remove("Toggle")   
              }
+             return c;
      }) 
           index < 2  && index >= 0 ? b[index+1].classList.add("Toggle") : b[0].classList.add("Toggle")
            
