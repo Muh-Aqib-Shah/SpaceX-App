@@ -9,7 +9,7 @@ import { ErrorPage } from "./components/ErrorPage";
 
 interface Props{
     data: LaunchList | undefined
-}
+} 
 
 const months = ["January","Feburary","March","April","May","June","July","August","September","October","November","December"];
 
