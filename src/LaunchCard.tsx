@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import './App.css'
 import { LaunchList } from "./generated/graphql";
 import { useParams } from "react-router-dom";
 import placeholder from './images/no_image_found.jpg'
 import {ArrowBackIos,ArrowForwardIosRounded} from '@mui/icons-material';
 import { IconButton } from "@mui/material";
+import { StyledLaunchCard } from "./Styled-Components/LaunchCard.styles";
+import { ErrorPage } from "./components/ErrorPage";
 
 interface Props{
     data: LaunchList | undefined
@@ -23,12 +24,11 @@ export const LaunchCard : React.FC<Props> = ( { data } ) => {
     const { mission_name } = useParams()
 
     let LaunchDetails = data?.launches?.filter(elem => elem?.mission_name === mission_name)
-    let [heroImage,SetheroImage] = useState<(string | null)[]>((LaunchDetails && LaunchDetails[0]?.links?.flickr_images) ?? [placeholder]);
+  
+    let heroImage = (LaunchDetails && LaunchDetails[0]?.links?.flickr_images) ?? [placeholder];
     let [index,Setindex] = useState<number>(0);
     
     function frwrdimg(list: (string | null)[]){
-        console.log("f INDEX IS:",index," And length:",list.length);
-        
         if(index < list.length)
       Setindex(prev => prev+1)
         else{
@@ -36,7 +36,6 @@ export const LaunchCard : React.FC<Props> = ( { data } ) => {
         }
     }
     function bckwrdimg(list : (string | null)[]){
-        console.log("b INDEX IS:",index," And length:",list.length);
         if(index > 0){
             Setindex(prev => prev-1)
         }
@@ -45,11 +44,15 @@ export const LaunchCard : React.FC<Props> = ( { data } ) => {
         }
     }
 
+    if(LaunchDetails?.length === 0)
+     return <ErrorPage />
+
     return (
+        <StyledLaunchCard>
         <div className="Launch-cont">
             <div className="Card">
                 <div className="image">
-                    <img src={heroImage[index] ?? placeholder} 
+                    <img src={heroImage[index] || placeholder} 
                     alt="Rocket" className="thumb-image"/> 
                     <IconButton onClick={()=>bckwrdimg(heroImage) } className="img-btn1">
                     <ArrowBackIos/>
@@ -66,5 +69,6 @@ export const LaunchCard : React.FC<Props> = ( { data } ) => {
                 </div>
             </div>
         </div>
+        </StyledLaunchCard>
     )
 }
